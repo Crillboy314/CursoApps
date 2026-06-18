@@ -1,0 +1,65 @@
+:root {
+  --fondo:   #0D0D0D;
+  --tarjeta: #1C1C1E;
+  --texto:   #FFFFFF;
+  --acento:  #6EE7B7;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.tarjeta {
+  background: var(--tarjeta);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid #333;
+  width: 450px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: #0D0D0D;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: var(--texto);
+  padding: 0.7rem;
+  margin-top: 0.6rem;
+  font-size: 1rem;
+}
+
+input:focus { outline: 1px solid var(--acento); }
+
+button {
+  background: var(--acento);
+  color: #0D0D0D;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+button:hover { opacity: 0.85; }
+
+#lista-visitas { margin-top: 1.5rem; }
+
+.item {
+  background: #0D0D0D;
+  border-left: 3px solid var(--acento);
+  padding: 0.7rem 1rem;
+  margin-top: 0.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.item b { color: var(--acento); }

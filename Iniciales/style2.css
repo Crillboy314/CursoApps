@@ -1,0 +1,92 @@
+/* Restablecer márgenes y preparar el área de visualización */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Fondo oscuro general y centrado absoluto de la tarjeta */
+body {
+    background-color: #0b0f19;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+/* Tarjeta contenedora utilizando Flexbox */
+.profile-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+    background-color: #1a2235;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    max-width: 750px;
+    width: 100%;
+}
+
+/* Contenedor del Avatar Circular */
+.avatar-container {
+    flex-shrink: 0;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Hace el contenedor circular */
+    overflow: hidden;
+    border: 3px solid #34d399; /* Borde color Mint */
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.2);
+}
+
+.avatar-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenedor interno de información estructurado con Flexbox */
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Título en color Mint */
+.mint-title {
+    color: #34d399; /* Color Mint */
+    font-size: 14pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Nombre en color Blanco */
+.name {
+    color: #ffffff; /* Nombre en blanco */
+    font-size: 28pt;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Descripción secundaria */
+.description {
+    color: #94a3b8;
+    font-size: 11pt;
+    line-height: 1.6;
+}
+
+/* Ajuste adaptativo para pantallas más pequeñas (Móviles) */
+@media (max-width: 600px) {
+    .profile-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .profile-info {
+        align-items: center;
+    }
+}

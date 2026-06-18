@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Paso 1 — JS Básico</title>
+  <style>
+    /* CSS mínimo dark mode (ya lo vieron la sesión pasada) */
+    :root {
+      --fondo:   #0D0D0D;
+      --tarjeta: #1C1C1E;
+      --texto:   #FFFFFF;
+      --acento:  #6EE7B7;
+    }
+    body {
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 3rem;
+    }
+    .tarjeta {
+      background: var(--tarjeta);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #333;
+      text-align: center;
+    }
+    button {
+      background: var(--acento);
+      color: #0D0D0D;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover { opacity: 0.85; }
+    #resultado {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: var(--acento);
+      min-height: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tarjeta">
+    <h1>Mi primera página con JS</h1>
+    <p>Haz click en el botón 👇</p>
+
+    <!-- El botón que vamos a "escuchar" desde JS -->
+    <button id="mi-btn">Salúdame</button>
+
+    <!-- El div donde JS va a escribir -->
+    <div id="resultado"></div>
+  </div>
+
+  <!-- ⚠️ IMPORTANTE: el script va AL FINAL del body.
+       Así el HTML ya existe cuando el JS lo busca. -->
+  <script>
+    // ════════════════════════════════════════════
+    // BLOQUE 1: Seleccionar elementos del HTML
+    // ════════════════════════════════════════════
+    // document = toda la página
+    // getElementById = buscar por el atributo id=""
+    const boton = document.getElementById('mi-btn');
+    const caja  = document.getElementById('resultado');
+
+    // ════════════════════════════════════════════
+    // BLOQUE 2: Escuchar un click
+    // ════════════════════════════════════════════
+    // addEventListener = "cuando pase X, ejecuta Y"
+    // 'click' = el evento que escuchamos
+    // () => {...} = la función que se ejecuta
+    let contador = 0;
+
+    boton.addEventListener('click', () => {
+      contador = contador + 1;
+      // textContent = cambiar el texto del elemento
+      caja.textContent = '¡Hola! Me has saludado ' + contador + ' veces 👋';
+    });
+
+    // 💡 PARA LA CLASE: abrir consola (F12) y mostrar que
+    // también puedes escribir esto directamente ahí:
+    //   document.getElementById('resultado').textContent = 'Hackeado 😎'
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+/* Reseteo básico y configuración de caja */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Configuración del lienzo para estirarse al alto total del navegador */
+html, body {
+    height: 100%;
+    background-color: #0b0f19;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+}
+
+/* Contenedor padre en Flexbox dispuesto en columna vertical */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ocupa el 100% de la altura de la pantalla */
+}
+
+/* --- 1. CABECERA (HEADER) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Separa el logo de la navegación */
+    align-items: center;
+    background-color: #111827;
+    padding: 20px 40px;
+    border-bottom: 1px solid #1f2937;
+}
+
+.main-header .logo {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #34d399; /* Color Mint */
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 11pt;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+    color: #34d399; /* Mint al hacer hover */
+}
+
+/* --- 2. SECCIÓN CENTRAL (MAIN) --- */
+.main-content {
+    display: flex;
+    justify-content: center; /* Centrado horizontal del contenido */
+    align-items: center;     /* Centrado vertical del contenido */
+    flex-grow: 1;            /* Ocupa TODO el espacio vertical restante, empujando el footer */
+    padding: 40px 20px;
+}
+
+.content-card {
+    background-color: #1a2235;
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid #2d3748;
+}
+
+.badge {
+    color: #34d399;
+    font-size: 10pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.content-card h1 {
+    font-size: 26pt;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #ffffff; /* Nombre en blanco */
+}
+
+.content-card p {
+    color: #94a3b8;
+    font-size: 11pt;
+    line-height: 1.7;
+}
+
+/* --- 3. PIE DE PÁGINA (FOOTER) --- */
+.main-footer {
+    display: flex;
+    justify-content: space-between; /* Separa los textos a los extremos */
+    align-items: center;
+    background-color: #0f172a;
+    padding: 20px 40px;
+    border-top: 1px solid #1f2937;
+    color: #64748b;
+    font-size: 10pt;
+}
+
+.footer-brand {
+    color: #34d399; /* Detalle en mint */
+    font-weight: 500;
+}
+
+/* Diseño responsivo para pantallas móviles */
+@media (max-width: 600px) {
+    .main-header, 
+    .main-footer {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Libro de Visitas — React</title>
+  <style>
+    body { background:#0D0D0D; color:#fff; font-family:sans-serif;
+           display:flex; justify-content:center; padding:3rem; }
+    .tarjeta { background:#1C1C1E; border:1px solid #333; border-radius:12px;
+               padding:2rem; width:450px; }
+    h1 { margin-top:0; }
+    input { display:block; width:100%; box-sizing:border-box; background:#0D0D0D;
+            border:1px solid #333; border-radius:8px; color:#fff; padding:0.7rem;
+            margin-top:0.6rem; font-size:1rem; }
+    input:focus { outline:1px solid #6EE7B7; }
+    button { background:#6EE7B7; color:#0D0D0D; border:none; padding:0.8rem 1.5rem;
+             border-radius:8px; font-weight:bold; font-size:1rem; cursor:pointer;
+             margin-top:1rem; width:100%; }
+    .item { background:#0D0D0D; border-left:3px solid #6EE7B7; padding:0.7rem 1rem;
+            margin-top:0.5rem; border-radius:0 8px 8px 0; }
+    .item b { color:#6EE7B7; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.5/babel.min.js"></script>
+
+  <script type="text/babel" data-presets="react">
+    const { useState, useEffect } = React;
+    const API = 'http://127.0.0.1:8000';
+
+    function Visita(props) {
+      return (
+        <div className="item">
+          <b>{props.nombre}</b>: {props.mensaje}
+        </div>
+      );
+    }
+
+    function App() {
+      const [visitas, setVisitas] = useState([]);
+      const [nombre, setNombre]   = useState('');
+      const [mensaje, setMensaje] = useState('');
+
+      function cargar() {
+        fetch(`${API}/visitas`)
+          .then(r => r.json())
+          .then(datos => setVisitas(datos.visitas));
+      }
+      useEffect(() => { cargar(); }, []);
+
+      function enviar() {
+        if (!nombre || !mensaje) { alert('Llena los dos campos 🙃'); return; }
+        fetch(`${API}/visitas`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, mensaje })
+        })
+          .then(r => r.json())
+          .then(() => {
+            setNombre('');
+            setMensaje('');
+            cargar();
+          })
+          .catch(err => alert('❌ ¿Está corriendo uvicorn? ' + err));
+      }
+
+      return (
+        <div className="tarjeta">
+          <h1>📖 Libro de visitas (React)</h1>
+          <input
+            placeholder="Tu nombre"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+          />
+          <input
+            placeholder="Tu mensaje"
+            value={mensaje}
+            onChange={(e) => setMensaje(e.target.value)}
+          />
+          <button onClick={enviar}>Enviar ✍️</button>
+          <div style={{ marginTop: '1.5rem' }}>
+            {visitas.map((v, i) =>
+              <Visita key={i} nombre={v.nombre} mensaje={v.mensaje} />
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>

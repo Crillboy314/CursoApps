@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Libro de Visitas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="tarjeta">
+    <h1>📖 Libro de visitas</h1>
+    <p>Escribe algo y mira cómo aparece en la lista</p>
+
+    <!-- El formulario (sin <form>, solo inputs + botón) -->
+    <input id="input-nombre" type="text" placeholder="Tu nombre">
+    <input id="input-mensaje" type="text" placeholder="Tu mensaje">
+    <button id="btn-enviar">Enviar ✍️</button>
+
+    <!-- Aquí se pinta la lista dinámica -->
+    <div id="lista-visitas"></div>
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
